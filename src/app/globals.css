@@ -184,14 +184,17 @@ html{scrollbar-gutter:stable}.reel-window{overflow:clip}.reel-track{transform:tr
 .winner-actions .grabfood-button{display:none}@media(pointer:coarse),(max-width:640px){.winner-actions{flex-wrap:wrap;gap:12px}.winner-actions .grabfood-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:12px 18px;border:1px solid #00b14f;border-radius:6px;background:#00b14f;color:#071e10;text-decoration:none;font-size:14px;font-weight:600;flex:1 0 100%}.grabfood-label strong{font-size:19px;letter-spacing:-.5px;margin-left:3px}.winner-actions .grabfood-button:hover{background:#13c561}.winner-actions .grabfood-button:active{background:#009e46}.winner-actions .find-button{margin-right:auto}.winner-actions .grabfood-button{order:-1}}
 
 /* Keep the food-case wordmark legible and leave mobile room for account controls. */
-.brand { flex: 0 0 auto; min-width: 0; }
+.brand { flex: 0 0 auto; min-width: 0; display: flex; align-items: center; gap: 12px; }
 .brand picture, .brand-logo { display: block; }
 .brand-logo { width: 180px; height: 60px; object-fit: contain; }
+.brand-logo-img { height: 40px; width: auto; object-fit: contain; flex-shrink: 0; }
 @media (max-width: 900px) {
   .brand-logo { width: 44px; height: 44px; }
+  .brand-logo-img { height: 36px; }
 }
 @media (max-width: 640px) {
   .brand-logo { width: 40px; height: 40px; }
+  .brand-logo-img { height: 32px; }
 }
 
 /* ========== PHILOSOPHY THEME ========== */

@@ -14,3 +14,6 @@ list-philosophers.cjs
 *credentials*.json
 cloudinary*.json
 public/images/philosophers/
+
+# Local files
+logotriet.png

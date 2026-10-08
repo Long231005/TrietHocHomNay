@@ -511,6 +511,7 @@ export default function Home() {
   return <div className="site-shell">
     <header>
       <a href={`${basePath}/`} className="brand">
+        <img src="/brand/logo.png" alt="Câu Nói Triết Nào" className="brand-logo-img" />
         <span className="brand-text">CÂU NÓI TRIẾT NÀO?</span>
       </a>
       <div className="header-actions">
@@ -537,9 +538,9 @@ export default function Home() {
           {sound ? <Volume2 size={18} /> : <VolumeX size={18} />}
           <span>{sound ? t.soundOn : t.soundOff}</span>
         </button>
-        <a className="social-button github-button" href="https://github.com/truanayangi-com/truanayangi" target="_blank" rel="noreferrer" aria-label={t.github}>
-          <svg className="github-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49v-1.91c-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.96a9.3 9.3 0 0 1 2.5.35c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.89v2.8c0 .27.18.59.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" /></svg>
-          <span className="github-label">GitHub</span>
+        <a className="social-button github-button" href="https://www.facebook.com/mid.best.568/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg className="github-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span className="github-label">Facebook</span>
         </a>
       </div>
     </header>
