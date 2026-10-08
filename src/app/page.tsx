@@ -219,7 +219,7 @@ function QuoteResultDialog({
         </div>
       </div>
       <div className="winner-actions">
-        <a className="find-button" href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(philosopher.name)}`} target="_blank" rel="noreferrer">{t.find} <Globe size={16} /></a>
+        <a className="find-button" href={`https://${philosopher.wikiLang || 'vi'}.wikipedia.org/wiki/${encodeURIComponent(philosopher.wikiTitle || philosopher.name)}`} target="_blank" rel="noopener noreferrer">{t.find} <Globe size={16} /></a>
         <button onClick={onClose}>{t.continue}</button>
       </div>
     </>
