@@ -1,5 +1,6 @@
 'use client';
 import {useState, useEffect, useCallback, useMemo, useRef} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useSubjects} from '@/hooks/use-subjects';
 import {usePracticeProgress} from '@/hooks/use-practice-progress';
 import {useWisdomShards} from '@/hooks/use-wisdom-shards';
@@ -36,6 +37,7 @@ export default function PracticePage() {
   const [showConfirmRestart, setShowConfirmRestart] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [showExamResult, setShowExamResult] = useState(false);
+  const navigate = useNavigate();
   
   if (!subjectsReady || !shardsReady) return null;
   
@@ -68,10 +70,14 @@ export default function PracticePage() {
   };
   
   const handleBack = () => {
-    if (screen === 'menu') {
+    if (screen === 'list') {
+      navigate('/');
+    } else if (screen === 'menu') {
       setScreen('list');
       setSelectedSubject(null);
     } else if (screen === 'learn' || screen === 'exam') {
+      setScreen('menu');
+    } else {
       setScreen('menu');
     }
   };
@@ -132,7 +138,6 @@ export default function PracticePage() {
           subjectCode={selectedSubject || ''}
           onContinue={() => setScreen('learn')}
           onExit={() => setScreen('menu')}
-          onRestart={() => setShowConfirmRestart(true)}
         />
       )}
 
@@ -153,14 +158,6 @@ export default function PracticePage() {
           onUnlock={() => handleUnlock(selectedSubject)}
           onClose={() => setShowUnlockDialog(false)}
           onGoToCase={() => window.location.href = '/'}
-        />
-      )}
-
-      {showConfirmRestart && (
-        <ConfirmDialog
-          message={t.confirmRestart}
-          onConfirm={() => { setShowConfirmRestart(false); }}
-          onCancel={() => setShowConfirmRestart(false)}
         />
       )}
 
@@ -430,13 +427,12 @@ function LearnMode({subjectCode, onExit, onComplete, shards}: {
   );
 }
 
-function LearnComplete({subjectCode, onContinue, onExit, onRestart}: {
+function LearnComplete({subjectCode, onContinue, onExit}: {
   subjectCode: string;
   onContinue: () => void;
   onExit: () => void;
-  onRestart: () => void;
 }) {
-  const {getLearnedCount} = usePracticeProgress(subjectCode);
+  const {getLearnedCount, resetProgress} = usePracticeProgress(subjectCode);
   const [totalQuestions, setTotalQuestions] = useState(0);
   
   useEffect(() => {
@@ -447,6 +443,11 @@ function LearnComplete({subjectCode, onContinue, onExit, onRestart}: {
 
   const learned = getLearnedCount();
 
+  const handleRestart = () => {
+    resetProgress();
+    onContinue();
+  };
+
   return (
     <div className="learn-complete">
       <div className="complete-icon">
@@ -456,7 +457,7 @@ function LearnComplete({subjectCode, onContinue, onExit, onRestart}: {
       <p className="progress-text">Đã thuộc {learned} / {totalQuestions} câu</p>
       <div className="complete-actions">
         <button onClick={onContinue}>Học chuỗi tiếp theo</button>
-        <button onClick={onRestart}>Học lại từ đầu</button>
+        <button onClick={handleRestart}>Học lại từ đầu</button>
         <button onClick={onExit}>Thoát</button>
       </div>
     </div>
