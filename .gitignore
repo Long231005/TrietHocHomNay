@@ -3,3 +3,10 @@ dist/
 *.tsbuildinfo
 .env*
 .DS_Store
+
+# Cloudinary/API secrets
+list-philosophers.cjs
+*secret*.json
+*credentials*.json
+cloudinary*.json
+public/images/philosophers/

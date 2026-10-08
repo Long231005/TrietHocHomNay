@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Segoe UI', 'Inter', Tahoma, Verdana, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -49,7 +49,10 @@
 }
 
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
 }
 
 :root {
@@ -189,4 +192,750 @@ html{scrollbar-gutter:stable}.reel-window{overflow:clip}.reel-track{transform:tr
 }
 @media (max-width: 640px) {
   .brand-logo { width: 40px; height: 40px; }
+}
+
+/* ========== PHILOSOPHY THEME ========== */
+
+/* Brand text for philosophy theme */
+.brand-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #d2f65b;
+  text-transform: uppercase;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Philosopher avatar art */
+.philosopher-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: 'Noto Serif', Georgia, serif;
+  text-shadow: 0 0 20px currentColor;
+}
+
+/* Philosopher details in winner dialog */
+.philosopher-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  margin: 16px 0;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 12px;
+  background: #17232d;
+  border-radius: 4px;
+  gap: 12px;
+}
+
+.detail-row.works {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 11px;
+  color: #8da1ad;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-size: 13px;
+  color: #e3e5e7;
+  text-align: right;
+}
+
+.detail-row.works .detail-value {
+  text-align: left;
+  font-size: 12px;
+  color: #b0bfc7;
+}
+
+.quote-box {
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border-left: 3px solid #d2f65b;
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+}
+
+.quote-label {
+  display: block;
+  font-size: 10px;
+  color: #d2f65b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.quote-box blockquote {
+  margin: 0;
+  font-size: 13px;
+  color: #c4ccd3;
+  font-style: italic;
+  line-height: 1.6;
+  font-family: 'Noto Serif', Georgia, serif;
+}
+
+/* Era filter buttons */
+.era-filter {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.era-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #1e2b36;
+  border: 1px solid #3a4a52;
+  color: #9daeb7;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.era-btn:hover {
+  border-color: #5a6a72;
+  color: #c4ccd3;
+}
+
+.era-btn.active {
+  background: #d2f65b;
+  border-color: #d2f65b;
+  color: #101113;
+  font-weight: 600;
+}
+
+/* Philosopher card hover effect */
+.food-card.philosopher-card {
+  background: linear-gradient(180deg, #1a2530 0%, #1f2d38 100%);
+}
+
+.food-card.philosopher-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--rarity);
+}
+
+.food-card.philosopher-card .food-image {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Card typography fix for Vietnamese */
+.food-card,
+.food-card * {
+  font-family: 'Segoe UI', 'Inter', Tahoma, sans-serif !important;
+}
+
+.quote-preview {
+  font-family: 'Noto Serif', Georgia, 'Times New Roman', serif !important;
+}
+
+[data-slot="dialog-content"],
+[data-slot="dialog-content"] * {
+  font-family: 'Segoe UI', 'Inter', Tahoma, sans-serif !important;
+}
+
+[data-slot="dialog-content"] .quote-text-large,
+[data-slot="dialog-content"] .quote-text-large p,
+[data-slot="dialog-content"] .meaning-text,
+[data-slot="dialog-content"] .quote-mark,
+[data-slot="dialog-content"] .philosopher-name {
+  font-family: 'Noto Serif', Georgia, 'Times New Roman', serif !important;
+}
+
+.winner-dialog {
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #d2f65b #17232d;
+  width: min(900px, 95vw) !important;
+  animation: modalFadeIn 0.4s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.winner-dialog.rarity-5 {
+  animation: modalFadeInLegendary 0.6s ease-out;
+}
+
+@keyframes modalFadeInLegendary {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    filter: brightness(1.2);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: brightness(1);
+  }
+}
+
+.winner-dialog::-webkit-scrollbar {
+  width: 8px;
+}
+
+.winner-dialog::-webkit-scrollbar-track {
+  background: #17232d;
+  border-radius: 4px;
+}
+
+.winner-dialog::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d2f65b, #8aab3a);
+  border-radius: 4px;
+}
+
+.quote-dialog-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 8px;
+  max-width: 850px;
+}
+
+.quote-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border-radius: 8px;
+  border-left: 4px solid var(--rarity, #d2f65b);
+}
+
+.quote-text-large {
+  position: relative;
+  padding: 16px 12px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e3e5e7;
+}
+
+.quote-text-large .main-quote {
+  font-size: 20px;
+  font-weight: 500;
+  color: #f5f5f5;
+  line-height: 1.7;
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.quote-text-large .original-quote {
+  font-size: 13px;
+  color: #8a9ba6;
+  font-style: italic;
+  margin: 8px 0 0 0;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.quote-text-large p:not(.main-quote):not(.original-quote) {
+  margin: 0;
+  padding: 0 8px;
+}
+
+.quote-mark {
+  font-size: 36px;
+  color: var(--rarity, #d2f65b);
+  font-family: Georgia, serif;
+  line-height: 0.5;
+  opacity: 0.7;
+}
+
+.quote-mark.right {
+  display: block;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.meaning-box {
+  background: #17232d;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 3px solid #d2f65b;
+}
+
+.meaning-label {
+  display: block;
+  font-size: 10px;
+  color: #d2f65b;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.meaning-text {
+  margin: 0;
+  font-size: 13px;
+  color: #c4ccd3;
+  line-height: 1.5;
+  font-family: Georgia, serif;
+}
+
+.philosopher-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.philosopher-card {
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border: 1px solid #ffffff15;
+  border-bottom: 3px solid var(--rarity, #d2f65b);
+  border-radius: 8px;
+  padding: 20px 16px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.philosopher-avatar-large {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rarity, #d2f65b) 0%, color-mix(in srgb, var(--rarity, #d2f65b) 50%, #1a2530) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  font-weight: bold;
+  color: #0a0e0e;
+  font-family: Georgia, serif;
+  margin-bottom: 16px;
+  box-shadow: 0 0 32px color-mix(in srgb, var(--rarity, #d2f65b) 50%, transparent), 0 8px 32px rgba(0,0,0,0.4);
+  border: 4px solid var(--rarity, #d2f65b);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.philosopher-avatar-large:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 48px color-mix(in srgb, var(--rarity, #d2f65b) 70%, transparent), 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.philosopher-name {
+  margin: 0;
+  font-size: 20px;
+  color: #f3f3ef;
+  font-weight: 700;
+  font-family: Georgia, serif;
+}
+
+.philosopher-original {
+  margin: 0;
+  font-size: 13px;
+  color: #8a9ba6;
+  font-style: italic;
+}
+
+.philosopher-info {
+  width: 100%;
+  text-align: left;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 10px;
+  background: #17232d;
+  border-radius: 4px;
+  gap: 8px;
+}
+
+.info-row.works-row {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 10px;
+  color: #8da1ad;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.info-value {
+  font-size: 12px;
+  color: #e3e5e7;
+  text-align: right;
+}
+
+.info-row.works-row .info-value {
+  text-align: left;
+  font-size: 11px;
+  color: #b0bfc7;
+}
+
+@media (max-width: 720px) {
+  .quote-dialog-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 12px 4px;
+  }
+  .quote-text-large {
+    font-size: 16px;
+  }
+  .quote-text-large .main-quote {
+    font-size: 18px;
+  }
+  .philosopher-avatar-large {
+    width: 140px;
+    height: 140px;
+    font-size: 48px;
+  }
+  .quote-side {
+    padding: 16px;
+  }
+  .philosopher-side {
+    padding: 8px 0;
+  }
+  .philosopher-card {
+    padding: 16px 12px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .era-filter {
+    flex-wrap: wrap;
+  }
+  
+  .era-btn {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+  
+  .philosopher-details {
+    padding: 0 4px;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .detail-value {
+    text-align: left;
+  }
+}
+
+/* Wisdom Shards & Pity */
+.shards-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border: 1px solid #d2f65b44;
+  border-radius: 6px;
+  color: #d2f65b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shards-display svg {
+  color: #d2f65b;
+}
+
+.welcome-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border: 2px solid #d2f65b;
+  border-radius: 12px;
+  color: #f3f3ef;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 24px rgba(210,246,91,0.2);
+  animation: toastSlideIn 0.4s ease-out, toastFadeOut 0.4s ease-in 3.6s forwards;
+  z-index: 9999;
+}
+
+.welcome-toast svg {
+  color: #d2f65b;
+  flex-shrink: 0;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .welcome-toast {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+  @keyframes toastSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.pity-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pity-display.pity-4 {
+  background: #a855f722;
+  color: #a855f7;
+  border: 1px solid #a855f744;
+}
+
+.pity-display.pity-5 {
+  background: #eab30822;
+  color: #eab308;
+  border: 1px solid #eab30844;
+}
+
+.pity-warning {
+  text-align: center;
+  margin: 8px 0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pity-warning.pity-4-warning {
+  background: #a855f715;
+  color: #a855f7;
+  border: 1px solid #a855f730;
+}
+
+.pity-warning.pity-5-warning {
+  background: #eab30815;
+  color: #eab308;
+  border: 1px solid #eab30830;
+}
+
+.shards-earned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #1a2530, #1f2d38);
+  border: 1px solid #d2f65b44;
+  border-radius: 6px;
+  color: #d2f65b;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.shards-earned svg {
+  color: #d2f65b;
+}
+
+/* Locked cards */
+.locked-card {
+  opacity: 0.7;
+  filter: grayscale(30%);
+}
+
+.lock-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #666;
+  z-index: 10;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+.locked-dialog .quote-text-large.locked {
+  opacity: 0.6;
+}
+
+.locked-dialog .meaning-box.locked {
+  opacity: 0.5;
+  border-left-color: #666;
+}
+
+.philosopher-card.locked {
+  opacity: 0.6;
+}
+
+.philosopher-card.locked .philosopher-avatar-large.locked {
+  background: linear-gradient(135deg, #333, #222) !important;
+  color: #666;
+}
+
+.unlock-cost {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 12px 20px;
+  background: #17232d;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.current-shards {
+  font-size: 12px;
+  color: #8da1ad;
+}
+
+.philosopher-info-locked {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.unlock-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #3b82f6, #16a34a);
+  border: 1px solid #3b82f666;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.unlock-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.unlock-button:disabled {
+  background: #333;
+  border-color: #444;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Rarity colors for tier display */
+.tier {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Locked card in inventory - darker appearance */
+.inventory-grid .food-card.locked-card {
+  background-color: #15181c;
+}
+
+.inventory-grid .food-card.locked-card .card-copy strong {
+  color: #666;
+}
+
+.inventory-grid .food-card.locked-card .card-copy span {
+  color: #555;
+}
+
+/* Rarity border colors */
+.food-card {
+  border-bottom: 3px solid var(--rarity, #3b82f6);
+}
+
+.reel-track .food-card {
+  border-bottom: 3px solid var(--rarity, #3b82f6);
+}
+
+@media (max-width: 640px) {
+  .shards-display {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .pity-display {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  .header-actions {
+    gap: 4px;
+  }
 }

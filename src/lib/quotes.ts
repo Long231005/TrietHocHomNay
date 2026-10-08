@@ -1,0 +1,122 @@
+export type PhilosopherRef = {
+  id: string;
+  name: string;
+  nameOriginal?: string | null;
+  country: string;
+  era: string;
+  school: string;
+  notableWorks: string[];
+  bio: string;
+  imageUrl: string;
+};
+
+export type Quote = {
+  id: string;
+  text: string;
+  textOriginal?: string;
+  meaning: string;
+  rarity: 3 | 4 | 5;
+  philosopherId: string;
+};
+
+export const UNLOCK_COST: Record<Quote['rarity'], number> = {
+  3: 5,
+  4: 7,
+  5: 10,
+};
+
+export const SHARD_REWARD: Record<Quote['rarity'], number> = {
+  3: 3,
+  4: 5,
+  5: 10,
+};
+
+export const SHARD_DUPE_MULTIPLIER = 2;
+
+export const philosophers: PhilosopherRef[] = [
+  { id: 'p-001', name: 'Socrates', nameOriginal: 'Σωκράτης', country: 'Hy Lạp', era: '470-399 TCN', school: 'Triết học Socratic', notableWorks: ['Apology', 'Phaedo', 'Symposium'], bio: 'Triết gia Hy Lạp cổ đại, cha đẻ của triết học phương Tây.', imageUrl: '/images/philosophers/socrates.jpg' },
+  { id: 'p-002', name: 'Khổng Tử', nameOriginal: '孔子', country: 'Trung Quốc', era: '551-479 TCN', school: 'Nho giáo', notableWorks: ['Luận Ngữ', 'Kinh Xuân Thu'], bio: 'Nhà triết học Trung Quốc, sáng lập Nho giáo, ảnh hưởng văn hóa Á Đông.', imageUrl: '/images/philosophers/confucius.jpg' },
+  { id: 'p-003', name: 'Lão Tử', nameOriginal: '老子', country: 'Trung Quốc', era: 'Thế kỷ 6 TCN', school: 'Đạo giáo', notableWorks: ['Đạo Đức Kinh'], bio: 'Triết gia Trung Quốc, sáng lập Đạo giáo.', imageUrl: '/images/philosophers/laozi.jpg' },
+  { id: 'p-004', name: 'Jean-Paul Sartre', nameOriginal: null, country: 'Pháp', era: '1905-1980', school: 'Chủ nghĩa Hiện sinh', notableWorks: ['Being and Nothingness'], bio: 'Triết gia Pháp, tiên phong chủ nghĩa hiện sinh.', imageUrl: '/images/philosophers/sartre.jpg' },
+  { id: 'p-005', name: 'Plato', nameOriginal: 'Πλάτων', country: 'Hy Lạp', era: '428-328 TCN', school: 'Chủ nghĩa Duy tâm', notableWorks: ['The Republic', 'Symposium', 'Phaedo'], bio: 'Học trò Socrates, thầy Aristotle, đặt nền tảng triết học phương Tây.', imageUrl: '/images/philosophers/plato.jpg' },
+  { id: 'p-006', name: 'Aristotle', nameOriginal: 'Ἀριστοτέλης', country: 'Hy Lạp', era: '384-322 TCN', school: 'Triết học Hy Lạp cổ đại', notableWorks: ['Politics', 'Nicomachean Ethics', 'Metaphysics'], bio: 'Học trò Plato, thầy Alexander Đại đế, đặt nền tảng logic và khoa học.', imageUrl: '/images/philosophers/aristotle.jpg' },
+  { id: 'p-007', name: 'Đức Phật', nameOriginal: 'Siddhartha Gautama', country: 'Ấn Độ', era: '624-544 TCN', school: 'Phật giáo', notableWorks: ['Kinh Tạng'], bio: 'Nhà sáng lập Phật giáo, tìm con đường giải thoát khổ đau.', imageUrl: '/images/philosophers/buddha.jpg' },
+  { id: 'p-008', name: 'Trang Tử', nameOriginal: '莊子', country: 'Trung Quốc', era: '369-286 TCN', school: 'Đạo giáo', notableWorks: ['Trang Tử'], bio: 'Triết gia Đạo giáo Trung Quốc, nổi tiếng về tự do tinh thần.', imageUrl: '/images/philosophers/zhuangzi.jpg' },
+  { id: 'p-009', name: 'Vương Dương Minh', nameOriginal: '王陽明', country: 'Trung Quốc', era: '1472-1529', school: 'Tâm học', notableWorks: ['Truyền Tập Lục', 'Đại Học Vấn'], bio: 'Triết gia Trung Quốc, phát triển học thuyết tri chí.', imageUrl: '/images/philosophers/wang-yangming.jpg' },
+  { id: 'p-010', name: 'Rene Descartes', nameOriginal: null, country: 'Pháp', era: '1596-1650', school: 'Chủ nghĩa Duy lý', notableWorks: ['Discourse on the Method', 'Meditations'], bio: 'Cha đẻ hệ tọa độ Descartes, nền tảng triết học hiện đại.', imageUrl: '/images/philosophers/descartes.jpg' },
+  { id: 'p-011', name: 'Immanuel Kant', nameOriginal: null, country: 'Đức', era: '1724-1804', school: 'Chủ nghĩa Tiên phong', notableWorks: ['Critique of Pure Reason', 'Critique of Practical Reason'], bio: 'Cách mạng hóa triết học bằng nhận thức luận.', imageUrl: '/images/philosophers/kant.jpg' },
+  { id: 'p-012', name: 'Friedrich Nietzsche', nameOriginal: null, country: '�ức', era: '1844-1900', school: 'Chủ nghĩa Hư vô', notableWorks: ['Thus Spoke Zarathustra', 'Beyond Good and Evil'], bio: 'Phê phán đạo đức truyền thống, nền tảng triết học hiện đại.', imageUrl: '/images/philosophers/nietzsche.jpg' },
+  { id: 'p-013', name: 'Karl Marx', nameOriginal: null, country: 'Đức', era: '1818-1883', school: 'Chủ nghĩa Mác', notableWorks: ['Das Kapital', 'The Communist Manifesto'], bio: 'Phát triển chủ nghĩa Mác, ảnh hưởng chính trị thế kỷ 20.', imageUrl: '/images/philosophers/marx.jpg' },
+  { id: 'p-014', name: 'Heraclitus', nameOriginal: 'Ἡράκλειτος', country: 'Hy Lạp', era: '535-475 TCN', school: 'Triết học Biện chứng', notableWorks: ['On Nature'], bio: 'Triết gia tiền Socrates, nổi tiếng "dòng sông".', imageUrl: '/images/philosophers/heraclitus.jpg' },
+  { id: 'p-015', name: 'Machiavelli', nameOriginal: 'Niccolò Machiavelli', country: 'Ý', era: '1469-1527', school: 'Triết học Chính trị', notableWorks: ['The Prince'], bio: 'Cha đẻ khoa học chính trị hiện đại.', imageUrl: '/images/philosophers/machiavelli.jpg' },
+  { id: 'p-016', name: 'Hồ Chí Minh', nameOriginal: 'Nguyễn Sinh Cung', country: 'Việt Nam', era: '1890-1969', school: 'Tư tưởng Hồ Chí Minh', notableWorks: ['Tuyên ngôn Độc lập', 'Đường Kách Mệnh'], bio: 'Nhà lãnh đạo Việt Nam, sáng lập nước Việt Nam Dân chủ Cộng hòa.', imageUrl: '/images/philosophers/ho-chi-minh.jpg' },
+  { id: 'p-017', name: 'Thales', nameOriginal: 'Θαλῆς', country: 'Hy Lạp', era: '624-546 TCN', school: 'Trường phái Miletus', notableWorks: ['Các luận thuyết về tự nhiên'], bio: 'Triết gia Hy Lạp đầu tiên, đặt câu hỏi về bản nguyên vũ trụ.', imageUrl: '/images/philosophers/thales.jpg' },
+  { id: 'p-018', name: 'Thomas Aquinas', nameOriginal: null, country: 'Ý', era: '1225-1274', school: 'Triết học Kinh viện', notableWorks: ['Summa Theologiae'], bio: 'Kết hợp triết học Aristotle với thần học Kitô giáo.', imageUrl: '/images/philosophers/thomas-aquinas.jpg' },
+  { id: 'p-019', name: 'Augustine', nameOriginal: 'Augustine of Hippo', country: 'Bắc Phi', era: '354-430', school: 'Triết học Kitô giáo', notableWorks: ['Confessions', 'The City of God'], bio: 'Thần học gia quan trọng nhất của Kitô giáo sơ kỳ.', imageUrl: '/images/philosophers/augustine.jpg' },
+  { id: 'p-020', name: 'Avicenna', nameOriginal: 'Ibn Sīnā', country: 'Ba Tư', era: '980-1037', school: 'Triết học Hồi giáo', notableWorks: ['The Canon of Medicine'], bio: 'Bác học Ba Tư, ảnh hưởng y học và triết học.', imageUrl: '/images/philosophers/avicenna.jpg' },
+  { id: 'p-021', name: 'Averroes', nameOriginal: 'Ibn Rushd', country: 'Tây Ban Nha', era: '1126-1198', school: 'Triết học Hồi giáo', notableWorks: ['The Incoherence of the Incoherence'], bio: 'Bảo vệ triết học Aristotle trong thế giới Hồi giáo.', imageUrl: '/images/philosophers/averroes.jpg' },
+  { id: 'p-022', name: 'John Locke', nameOriginal: null, country: 'Anh', era: '1632-1704', school: 'Chủ nghĩa Duy thực nghiệm', notableWorks: ['Essay Concerning Human Understanding'], bio: 'Cha đẻ chủ nghĩa tự do hiện đại.', imageUrl: '/images/philosophers/john-locke.jpg' },
+  { id: 'p-023', name: 'Spinoza', nameOriginal: 'Baruch de Spinoza', country: 'Hà Lan', era: '1632-1677', school: 'Chủ nghĩa Duy lý', notableWorks: ['Ethics'], bio: 'Phát triển triết học duy lý và thần phiếm luận.', imageUrl: '/images/philosophers/spinoza.jpg' },
+  { id: 'p-024', name: 'Thomas Hobbes', nameOriginal: null, country: 'Anh', era: '1588-1679', school: 'Chủ nghĩa Duy vật', notableWorks: ['Leviathan'], bio: 'Phát triển lý thuyết hợp đồng xã hội.', imageUrl: '/images/philosophers/thomas-hobbes.jpg' },
+  { id: 'p-025', name: 'Hegel', nameOriginal: 'Georg Wilhelm Friedrich Hegel', country: 'Đức', era: '1770-1831', school: 'Chủ nghĩa Duy tâm', notableWorks: ['Phenomenology of Spirit', 'Science of Logic'], bio: 'Phát triển duy tâm biện chứng, ảnh hưởng Marx.', imageUrl: '/images/philosophers/hegel.jpg' },
+  { id: 'p-026', name: 'John Stuart Mill', nameOriginal: null, country: 'Anh', era: '1806-1873', school: 'Chủ nghĩa Vị lợi', notableWorks: ['On Liberty', 'Utilitarianism'], bio: 'Phát triển thuyết vị lợi, bảo vệ tự do cá nhân.', imageUrl: '/images/philosophers/john-stuart-mill.jpg' },
+  { id: 'p-027', name: 'Lenin', nameOriginal: 'Vladimir Ilyich Ulyanov', country: 'Nga', era: '1870-1924', school: 'Chủ nghĩa Mác', notableWorks: ['What Is To Be Done?', 'State and Revolution'], bio: 'Lãnh đạo Cách mạng Tháng Mười Nga.', imageUrl: '/images/philosophers/lenin.jpg' },
+  { id: 'p-028', name: 'Martin Heidegger', nameOriginal: null, country: 'Đức', era: '1889-1976', school: 'Hiện tượng học', notableWorks: ['Being and Time'], bio: 'Phát triển hiện tượng học, phân tích tồn tại (Dasein).', imageUrl: '/images/philosophers/heidegger.jpg' },
+  { id: 'p-029', name: 'Wittgenstein', nameOriginal: 'Ludwig Wittgenstein', country: 'Áo', era: '1889-1951', school: 'Triết học Phân tích', notableWorks: ['Tractatus', 'Philosophical Investigations'], bio: 'Sáng lập triết học ngôn ngữ phân tích.', imageUrl: '/images/philosophers/wittgenstein.jpg' },
+  { id: 'p-030', name: 'Michel Foucault', nameOriginal: null, country: 'Pháp', era: '1926-1984', school: 'Cấu trúc luận', notableWorks: ['Discipline and Punish', 'The History of Sexuality'], bio: 'Phân tích quyền lực và kiến thức trong xã hội.', imageUrl: '/images/philosophers/foucault.jpg' },
+  { id: 'p-031', name: 'Bertrand Russell', nameOriginal: null, country: 'Anh', era: '1872-1970', school: 'Triết học Phân tích', notableWorks: ['History of Western Philosophy', 'Principia Mathematica'], bio: 'Triết gia, nhà toán học, đoạt Nobel Văn học.', imageUrl: '/images/philosophers/russell.jpg' },
+  { id: 'p-032', name: 'Jürgen Habermas', nameOriginal: null, country: 'Đức', era: '1929-', school: 'Lý thuyết Xã hội', notableWorks: ['The Theory of Communicative Action'], bio: 'Phát triển lý thuyết hành động giao tiếp.', imageUrl: '/images/philosophers/habermas.jpg' },
+  { id: 'p-033', name: 'Slavoj Žižek', nameOriginal: null, country: 'Slovenia', era: '1949-', school: 'Triết học Hậu Hiện đại', notableWorks: ['Sublime Object of Ideology'], bio: 'Chuyên gia Lacanian psychoanalysis và chủ nghĩa Mác.', imageUrl: '/images/philosophers/zizek.jpg' },
+  { id: 'p-034', name: 'Martha Nussbaum', nameOriginal: 'Martha Craven Nussbaum', country: 'Mỹ', era: '1947-', school: 'Triết học Đạo đức', notableWorks: ['Creating Capabilities'], bio: 'Phát triển phương pháp tiếp cận năng lực.', imageUrl: '/images/philosophers/nussbaum.jpg' },
+  { id: 'p-035', name: 'Byung-Chul Han', nameOriginal: '한병철', country: 'Hàn Quốc', era: '1959-', school: 'Triết học Xã hội', notableWorks: ['The Burnout Society'], bio: 'Phê phán xã hội thành tích và văn hóa số.', imageUrl: '/images/philosophers/byung-chul-han.jpg' },
+  { id: 'p-036', name: 'Võ Nguyên Giáp', nameOriginal: null, country: 'Việt Nam', era: '1911-2013', school: 'Triết học Quân sự', notableWorks: ['Chiến tranh nhân dân'], bio: 'Nhà quân sự Việt Nam, Tổng tư lệnh QĐNDVN.', imageUrl: '/images/philosophers/vo-nguyen-giap.jpg' },
+  { id: 'p-037', name: 'Epicurus', nameOriginal: 'Ἐπίκουρος', country: 'Hy Lạp', era: '341-270 TCN', school: 'Chủ nghĩa Epicurean', notableWorks: ['Letter to Herodotus'], bio: 'Triết gia Hy Lạp về hạnh phúc và điềm tĩnh.', imageUrl: '/images/philosophers/epicurus.jpg' },
+  { id: 'p-038', name: 'Zhu Xi', nameOriginal: '朱熹', country: 'Trung Quốc', era: '1130-1200', school: 'Tân Nho giáo', notableWorks: ['Tứ thư'], bio: 'Hệ thống hóa Nho giáo thành Tân Nho giáo.', imageUrl: '/images/philosophers/zhu-xi.jpg' },
+  { id: 'p-039', name: 'Ralph Waldo Emerson', nameOriginal: null, country: 'Mỹ', era: '1803-1882', school: 'Chủ nghĩa Siêu hình', notableWorks: ['Self-Reliance', 'Nature'], bio: 'Lãnh đạo phong trào Siêu hình Mỹ.', imageUrl: '/images/philosophers/emerson.jpg' },
+  { id: 'p-040', name: 'Arthur Schopenhauer', nameOriginal: null, country: 'Đức', era: '1788-1860', school: 'Chủ nghĩa Bi quan', notableWorks: ['The World as Will and Representation'], bio: 'Nổi tiếng chủ nghĩa bi quan về ý chí và khổ đau.', imageUrl: '/images/philosophers/schopenhauer.jpg' },
+];
+
+export const philosopherMap = new Map(philosophers.map(p => [p.id, p]));
+
+export const quotes: Quote[] = [
+  { id: 'q-001', text: 'Tôi biết rằng tôi không biết gì cả.', textOriginal: 'I know that I know nothing.', meaning: 'Nhấn mạnh tầm quan trọng của sự khiêm tốn trí tuệ - thừa nhận giới hạn kiến thức là bước đầu để đạt tri thức thực sự.', rarity: 5, philosopherId: 'p-001' },
+  { id: 'q-002', text: 'Điều gì mình không muốn, đừng làm cho người khác.', textOriginal: 'Kỷ sở bất dục, vật thi ư nhân.', meaning: 'Tôn chỉ đạo đức nhân văn cốt lõi của Nho giáo - kêu gọi sự thấu cảm và đối xử công bằng giữa con người.', rarity: 5, philosopherId: 'p-002' },
+  { id: 'q-003', text: 'Hành trình ngàn dặm bắt đầu từ một bước chân.', meaning: 'Mọi thành tựu vĩ đại đều phải xuất phát từ những hành động nhỏ bé và sự khởi đầu cụ thể.', rarity: 5, philosopherId: 'p-003' },
+  { id: 'q-004', text: 'Tồn tại có trước bản chất.', textOriginal: 'Existence precedes essence.', meaning: 'Con người sinh ra trước, tự do lựa chọn hành động và tự định hình bản chất cuộc đời mình.', rarity: 5, philosopherId: 'p-004' },
+  { id: 'q-016', text: 'Không có gì quý hơn độc lập, tự do.', meaning: 'Khẳng định giá trị tối thượng của quyền tự do và tự quyết dân tộc.', rarity: 5, philosopherId: 'p-016' },
+  { id: 'q-036', text: 'Chiến tranh nhân dân. Lấy nhỏ thắng lớn, lấy chí nhân thay bạo tàn.', meaning: 'Đề cao sức mạnh toàn dân, kết hợp triết lý nhân văn với nghệ thuật quân sự.', rarity: 5, philosopherId: 'p-036' },
+  { id: 'q-005', text: 'Khi chạm vào tình yêu, ai cũng trở thành thi sĩ.', textOriginal: 'At the touch of love everyone becomes a poet.', meaning: 'Tình yêu và vẻ đẹp có sức mạnh khơi dậy cảm hứng sáng tạo và tâm hồn nghệ thuật.', rarity: 4, philosopherId: 'p-005' },
+  { id: 'q-006', text: 'Chúng ta là những gì chúng ta lặp đi lặp lại. Do đó, sự xuất sắc không phải là một hành động, mà là một thói quen.', textOriginal: 'We are what we repeatedly do. Excellence, then, is not an act, but a habit.', meaning: 'Phẩm hạnh được hình thành qua rèn luyện kiên trì hàng ngày, không phải ngẫu nhiên.', rarity: 4, philosopherId: 'p-006' },
+  { id: 'q-007', text: 'Không có con đường dẫn đến hòa bình, hòa bình chính là con đường.', meaning: 'Hòa bình không phải mục tiêu xa xôi mà phải được thực hành ngay trong từng suy nghĩ và hành động.', rarity: 4, philosopherId: 'p-007' },
+  { id: 'q-008', text: 'Thế sự như mộng, vạn vật đắc tự do trong sự tự nhiên.', meaning: 'Khuyên vượt qua ràng buộc vô nghĩa để sống hòa hợp, tự tại theo quy luật tự nhiên.', rarity: 4, philosopherId: 'p-008' },
+  { id: 'q-009', text: 'Tri thức và hành động là một.', meaning: 'Hiểu biết không tách rời thực hành - chỉ trong hành động tri thức mới có ý nghĩa.', rarity: 4, philosopherId: 'p-009' },
+  { id: 'q-010', text: 'Tôi tư duy, vậy tôi tồn tại.', textOriginal: 'Cogito, ergo sum.', meaning: 'Tư duy là bằng chứng không thể nghi ngờ cho sự tồn tại, nền tảng triết học hiện đại.', rarity: 4, philosopherId: 'p-010' },
+  { id: 'q-011', text: 'Hai điều làm tâm trí tôi luôn đầy sự ngưỡng mộ: bầu trời sao trên đầu tôi và đạo luật đạo đức bên trong tôi.', textOriginal: 'Two things fill the mind with ever new and increasing admiration and awe: the starry heavens above me and the moral law within me.', meaning: 'Tôn vinh vẻ đẹp tự nhiên vũ trụ và sức mạnh đạo đức trong bản tính con người.', rarity: 4, philosopherId: 'p-011' },
+  { id: 'q-012', text: 'Cái gì không giết chết được chúng ta sẽ làm chúng ta mạnh mẽ hơn.', textOriginal: 'That which does not kill us makes us stronger.', meaning: 'Thử thách và nghịch cảnh là cơ hội rèn luyện bản lĩnh và ý chí vươn lên.', rarity: 4, philosopherId: 'p-012' },
+  { id: 'q-013', text: 'Các nhà triết học mới chỉ giải thích thế giới bằng nhiều cách khác nhau; vấn đề là cải tạo thế giới.', textOriginal: 'The philosophers have only interpreted the world in various ways; the point is to change it.', meaning: 'Triết học không chỉ lý thuyết mà phải gắn với thực tiễn để biến đổi xã hội.', rarity: 4, philosopherId: 'p-013' },
+  { id: 'q-014', text: 'Không ai tắm hai lần trên cùng một dòng sông.', textOriginal: 'No man ever steps in the same river twice.', meaning: 'Vạn vật luôn vận động, mỗi khoảnh khắc qua đi là mãi mãi không trở lại.', rarity: 4, philosopherId: 'p-014' },
+  { id: 'q-015', text: 'Mục đích bao hàm phương tiện.', textOriginal: 'The ends justify the means.', meaning: 'Hiệu quả và mục tiêu cuối cùng đôi khi quyết định tính đúng đắn của hành động.', rarity: 4, philosopherId: 'p-015' },
+  { id: 'q-018', text: 'Với người có đức tin, không cần giải thích. Với người không có đức tin, giải thích không đủ.', textOriginal: 'To one who has faith, no explanation is necessary. To one without faith, no explanation is possible.', meaning: 'Đề cao vai trò của niềm tin tâm linh đối với nhận thức con người.', rarity: 4, philosopherId: 'p-018' },
+  { id: 'q-021', text: 'Sự dốt nát dẫn đến sợ hãi, sợ hãi dẫn đến thù hận, và thù hận dẫn đến bạo lực.', textOriginal: 'Ignorance leads to fear, fear leads to hatred, and hatred leads to violence.', meaning: 'Cảnh báo hậu quả tàn khốc của sự thiếu hiểu biết đối với xã hội.', rarity: 4, philosopherId: 'p-021' },
+  { id: 'q-030', text: 'Tri thức là quyền lực.', textOriginal: 'Knowledge is power.', meaning: 'Tri thức và quyền lực gắn liền; cách tri thức được tạo ra quyết định kiểm soát xã hội.', rarity: 4, philosopherId: 'p-030' },
+  { id: 'q-017', text: 'Nước là bản nguyên của vạn vật.', textOriginal: 'Water is the principle of all things.', meaning: 'Giải thích nguồn gốc vũ trụ bằng hiện thực tự nhiên thay vì thần thoại.', rarity: 3, philosopherId: 'p-017' },
+  { id: 'q-019', text: 'Đức tin là tin vào những gì bạn không thấy; phần thưởng của đức tin là được thấy những gì bạn tin.', textOriginal: 'Faith is to believe what you do not see; the reward of this faith is to see what you believe.', meaning: 'Niềm tin chân thành mở ra tri thức và thấu hiểu tâm linh.', rarity: 3, philosopherId: 'p-019' },
+  { id: 'q-020', text: 'Tri thức về bất kỳ điều gì chỉ hoàn chỉnh khi ta hiểu rõ nguyên nhân sinh ra nó.', textOriginal: 'The knowledge of anything, since all things have causes, is not acquired or complete unless it is known by its causes.', meaning: 'Đặt nền móng cho tư duy khoa học dựa trên mối quan hệ nguyên nhân - kết quả.', rarity: 3, philosopherId: 'p-020' },
+  { id: 'q-022', text: 'Tâm trí con người khi sinh ra như một tờ giấy trắng.', textOriginal: 'The mind is a blank slate (tabula rasa).', meaning: 'Mọi tri thức đều được hình thành từ kinh nghiệm và trải nghiệm thực tế.', rarity: 3, philosopherId: 'p-022' },
+  { id: 'q-023', text: 'Hòa bình không chỉ là sự vắng bóng chiến tranh, mà là một phẩm hạnh, một trạng thái tâm trí.', textOriginal: 'Peace is not an absence of war, it is a virtue, a state of mind, a disposition for benevolence, confidence, justice.', meaning: 'Hòa bình thật sự bắt nguồn từ đạo đức, lòng nhân ái và công bằng.', rarity: 3, philosopherId: 'p-023' },
+  { id: 'q-024', text: 'Thời gian rảnh rỗi là người mẹ của triết học.', textOriginal: 'Leisure is the mother of philosophy.', meaning: 'Chỉ khi đủ nhu cầu sinh tồn và có tự do suy tưởng, triết học mới phát triển.', rarity: 3, philosopherId: 'p-024' },
+  { id: 'q-025', text: 'Cái gì hợp lý thì hiện thực; cái gì hiện thực thì hợp lý.', textOriginal: 'What is rational is actual; and what is actual is rational.', meaning: 'Khẳng định sự thống nhất giữa quy luật tư duy và quy luật thế giới.', rarity: 3, philosopherId: 'p-025' },
+  { id: 'q-026', text: 'Mỗi cá nhân là chủ quyền tối cao đối với chính thân thể và tâm trí của mình.', textOriginal: 'Over himself, over his own body and mind, the individual is sovereign.', meaning: 'Khẳng định quyền tự do cá nhân cốt lõi và giới hạn quyền lực xã hội.', rarity: 3, philosopherId: 'p-026' },
+  { id: 'q-027', text: 'Học, học nữa, học mãi!', textOriginal: 'Учиться, учиться и учиться!', meaning: 'Nhận thức là quá trình vô tận, đòi hỏi rèn luyện và hoàn thiện liên tục.', rarity: 3, philosopherId: 'p-027' },
+  { id: 'q-028', text: 'Ngôn ngữ là ngôi nhà của Tồn tại.', textOriginal: 'Language is the house of Being.', meaning: 'Ngôn ngữ là phương tiện giúp con người thấu hiểu bản chất sự tồn tại.', rarity: 3, philosopherId: 'p-028' },
+  { id: 'q-029', text: 'Giới hạn ngôn ngữ của tôi là giới hạn thế giới của tôi.', textOriginal: 'The limits of my language mean the limits of my world.', meaning: 'Khả năng tư duy bị quy định bởi vốn ngôn ngữ sở hữu.', rarity: 3, philosopherId: 'p-029' },
+  { id: 'q-031', text: 'Một cuộc sống tốt đẹp là cuộc sống được khơi nguồn bởi tình yêu và được dẫn đường bởi tri thức.', textOriginal: 'The good life is one inspired by love and guided by knowledge.', meaning: 'Kết hợp tình yêu và tri thức là chìa khóa hạnh phúc và giá trị sống.', rarity: 3, philosopherId: 'p-031' },
+  { id: 'q-032', text: 'Hành động giao tiếp dựa trên sự đồng thuận đạt được thông qua đối thoại lý tính.', textOriginal: 'Communicative action is based on agreement achieved through rational discourse.', meaning: 'Xây dựng xã hội dân chủ đòi hỏi đối thoại bình đẳng, tôn trọng và hợp lý.', rarity: 3, philosopherId: 'p-032' },
+  { id: 'q-033', text: 'Dễ hình dung ra ngày tận thế hơn là hình dung ra sự kết thúc của chủ nghĩa tư bản.', textOriginal: 'It is easier to imagine the end of the world than the end of capitalism.', meaning: 'Phê phán sự chi phối của tư tưởng đương đại đối với nhận thức xã hội.', rarity: 3, philosopherId: 'p-033' },
+  { id: 'q-034', text: 'Năng lực thực tế, chứ không chỉ tài nguyên, mới định hình phẩm giá và sự phồn vinh của con người.', textOriginal: 'Capabilities, not just resources, define human dignity and well-being.', meaning: 'Đánh giá phát triển phải căn cứ vào năng lực thực sự của con người.', rarity: 3, philosopherId: 'p-034' },
+  { id: 'q-035', text: 'Xã hội ngày nay không còn là xã hội kỷ luật, mà là xã hội thành tích.', textOriginal: "Today's society is no longer Foucault's disciplinary world, but an achievement society.", meaning: 'Phê phán áp lực tự khai thác trong thời đại kỹ thuật số.', rarity: 3, philosopherId: 'p-035' },
+  { id: 'q-037', text: 'Hạnh phúc là sự vắng bóng của đau đớn trong thân xác và rối loạn trong tâm hồn.', textOriginal: 'Happiness is the absence of pain in the body and trouble in the soul.', meaning: 'Cuộc sống tốt đẹp là sự bình an nội tâm và điềm tĩnh.', rarity: 3, philosopherId: 'p-037' },
+  { id: 'q-038', text: 'Con người có bản tính tốt nhưng bị xã hội làm tha hóa.', meaning: 'Giáo dục đúng cách phát triển bản tính tốt vốn có của con người.', rarity: 3, philosopherId: 'p-038' },
+  { id: 'q-039', text: 'Tin vào bản thân là bí mật của thành công.', textOriginal: 'To believe in yourself is the secret of success.', meaning: 'Sự tự tin là nền tảng thành công trong cuộc sống.', rarity: 3, philosopherId: 'p-039' },
+  { id: 'q-040', text: 'Đau đớn là tín hiệu tiêu cực thúc đẩy ý chí.', textOriginal: 'Pain is the negative signal that drives the will.', meaning: 'Khổ đau là tín hiệu giúp con người nhận ra điều cần thay đổi.', rarity: 3, philosopherId: 'p-040' },
+];
