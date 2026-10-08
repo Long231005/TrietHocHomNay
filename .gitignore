@@ -4,6 +4,10 @@ dist/
 .env*
 .DS_Store
 
+# Lockfiles - use npm only
+pnpm-lock.yaml
+yarn.lock
+
 # Cloudinary/API secrets
 list-philosophers.cjs
 *secret*.json
