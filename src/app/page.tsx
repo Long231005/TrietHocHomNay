@@ -10,6 +10,7 @@ import { CaseAudio } from '@/lib/case-audio';
 import { flushSync } from 'react-dom';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AudioLines, Volume2, VolumeX, Sparkles, BookOpen, Globe, Lock, Unlock, Gem, Sparkle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const basePath = '';
@@ -519,10 +520,10 @@ export default function Home() {
           <Gem size={18} />
           <span>{shards}</span>
         </div>
-        <a className="practice-nav-button" href="/practice" aria-label="Luyện đề">
+        <Link className="practice-nav-button" to="/practice" aria-label="Luyện đề">
           <BookOpen size={18} />
           <span>Luyện đề</span>
-        </a>
+        </Link>
         {pity4Remaining <= 3 && (
           <div className="pity-display pity-4" title={t.pity4Warning.replace('{n}', String(pity4Remaining))}>
             <Sparkle size={14} />
