@@ -519,6 +519,10 @@ export default function Home() {
           <Gem size={18} />
           <span>{shards}</span>
         </div>
+        <a className="practice-nav-button" href="/practice" aria-label="Luyện đề">
+          <BookOpen size={18} />
+          <span>Luyện đề</span>
+        </a>
         {pity4Remaining <= 3 && (
           <div className="pity-display pity-4" title={t.pity4Warning.replace('{n}', String(pity4Remaining))}>
             <Sparkle size={14} />
